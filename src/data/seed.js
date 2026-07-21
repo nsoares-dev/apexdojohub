@@ -1,0 +1,42 @@
+export const inicialTransacoes = [
+    { id: 'tx-1', descricao: 'Adriana Rodrigues', data: '2026-01-05', valor: 180, status: 'Recebido', banco: 'PagBank', tipo: 'Fixo', aluno: 'Bernardo Rodrigues' },
+    { id: 'tx-2', descricao: 'Aluguel — Rinaldo Hond', data: '2026-01-08', valor: -2500, status: 'Pago', banco: 'PagBank', tipo: 'Fixo' },
+    { id: 'tx-3', descricao: 'Conta de Luz — Enel', data: '2026-02-10', valor: -325.4, status: 'Pago', banco: 'PagBank', tipo: 'Fixo' },
+    { id: 'tx-4', descricao: 'Felipe Sousa', data: '2026-02-12',  valor: 180, status: 'Recebido', banco: 'PagBank', tipo: 'Fixo', aluno: 'Felipe Sousa' },
+    { id: 'tx-5', descricao: 'G13 Franchising', data: '2026-03-06', valor: -250, status: 'Pago', banco: 'PagBank', tipo: 'Fixo' },
+    { id: 'tx-6', descricao: 'Maria Alice de Oliveira', data: '2026-03-15',  valor: 180, status: 'Recebido', banco: 'PagBank', tipo: 'Fixo', aluno: 'Maria Alice de Oliveira' },
+    { id: 'tx-7', descricao: 'Venda de Produtos', data: '2026-04-03',  valor: 250, status: 'Recebido', banco: 'InfinitePay', tipo: 'Variável' },
+    { id: 'tx-8', descricao: 'Manutenção do tatame', data: '2026-04-09',  valor: -450, status: 'Pago', banco: 'PagBank', tipo: 'Variável' },
+    { id: 'tx-9', descricao: 'Lucca Palone', data: '2026-04-15',  valor: 180, status: 'Recebido', banco: 'PagBank', tipo: 'Fixo', aluno: 'Lucca Palone' },
+    { id: 'tx-10', descricao: 'Internet — Power Fiber', data: '2026-04-20',  valor: -99.9, status: 'Pago', banco: 'PagBank', tipo: 'Fixo' },
+    {
+        id: 'tx-10',
+        descricao: "Simone Oliveira Santos",
+        data: "2026-07-07",
+        valor: 540.0,
+        status: "",
+        banco: "Pagbank",
+        tipo: "Fixo",
+        aluno: "Anderson Oliveira da Silva Bezerra",
+        fdp: "Pix",
+        observacao: "3 meses atrasados"
+    }
+];
+
+export const inicialAlunos = [
+    { id: 'aluno-1', dataAn: '2026-07-05', nome: 'Bernardo Rodrigues', modality: 'Jiu-Jitsu Kids', belt: 'Branca', plan: 'Mensal', fee: 180, dueDay: 5, phone: '11999991001', status: 'Ativo' },
+    { id: 'aluno-2', dataAn: '2026-01-08', nome: 'Felipe Sousa', modality: 'Muay Thai', belt: 'Iniciante', plan: 'Mensal', fee: 180, dueDay: 10, phone: '11999991002', status: 'Ativo' },
+    { id: 'aluno-3', dataAn: '2026-02-10', nome: 'Maria Alice de Oliveira', modality: 'Jiu-Jitsu Kids', belt: 'Cinza', plan: 'Mensal', fee: 180, dueDay: 15, phone: '11999991003', status: 'Ativo' },
+    { id: 'aluno-4', dataAn: '2026-07-12', nome: 'Lucca Palone', modality: 'Jiu-Jitsu', belt: 'Branca', plan: 'Mensal', fee: 180, dueDay: 15, phone: '11999991004', status: 'Ativo' },
+    { id: 'aluno-6', dataAn: '2026-07-06', nome: 'Ana Beatriz', modality: 'Muay Thai', belt: 'Intermediário', plan: 'Mensal', fee: 170, dueDay: 20, phone: '11999991005', status: 'Inativo' },
+    { id: 'aluno-7', dataAn: '2026-07-05', nome: 'Bernardo Rodrigues', modality: 'Jiu-Jitsu Kids', belt: 'Branca', plan: 'Mensal', fee: 180, dueDay: 5, phone: '11999991001', status: 'Ativo' },
+    { id: 'aluno-8', dataAn: '2026-01-08', nome: 'Felipe Sousa', modality: 'Muay Thai', belt: 'Iniciante', plan: 'Mensal', fee: 180, dueDay: 10, phone: '11999991002', status: 'Ativo' },
+    { id: 'aluno-9', dataAn: '2026-02-10', nome: 'Maria Alice de Oliveira', modality: 'Jiu-Jitsu Kids', belt: 'Cinza', plan: 'Mensal', fee: 180, dueDay: 15, phone: '11999991003', status: 'Ativo' },
+    { id: 'aluno-10', dataAn: '2026-07-12', nome: 'Lucca Palone', modality: 'Jiu-Jitsu', belt: 'Branca', plan: 'Mensal', fee: 180, dueDay: 15, phone: '11999991004', status: 'Ativo' },
+    { id: 'aluno-11', dataAn: '2026-07-06', nome: 'Ana Beatriz', modality: 'Muay Thai', belt: 'Intermediário', plan: 'Mensal', fee: 170, dueDay: 20, phone: '11999991005', status: 'Inativo' },
+    { id: 'aluno-12', dataAn: '2026-07-05', nome: 'Bernardo Rodrigues', modality: 'Jiu-Jitsu Kids', belt: 'Branca', plan: 'Mensal', fee: 180, dueDay: 5, phone: '11999991001', status: 'Ativo' },
+    { id: 'aluno-13', dataAn: '2026-01-08', nome: 'Felipe Sousa', modality: 'Muay Thai', belt: 'Iniciante', plan: 'Mensal', fee: 180, dueDay: 10, phone: '11999991002', status: 'Ativo' },
+    { id: 'aluno-14', dataAn: '2026-02-10', nome: 'Maria Alice de Oliveira', modality: 'Jiu-Jitsu Kids', belt: 'Cinza', plan: 'Mensal', fee: 180, dueDay: 15, phone: '11999991003', status: 'Ativo' },
+    { id: 'aluno-15', dataAn: '2026-07-12', nome: 'Lucca Palone', modality: 'Jiu-Jitsu', belt: 'Branca', plan: 'Mensal', fee: 180, dueDay: 15, phone: '11999991004', status: 'Ativo' },
+    { id: 'aluno-16', dataAn: '2026-07-06', nome: 'Ana Beatriz', modality: 'Muay Thai', belt: 'Intermediário', plan: 'Mensal', fee: 170, dueDay: 20, phone: '11999991005', status: 'Inativo' },
+];
