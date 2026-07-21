@@ -2,15 +2,16 @@
 
 Aplicação web desenvolvida em **React** e **JavaScript** para gerenciamento e acompanhamento financeiro.
 
-O projeto permite controlar transações, pagamentos e visualizar informações gerais de forma organizada, utilizando componentes reutilizáveis e armazenamento local dos dados.
+O projeto permite controlar transações, pagamentos e visualizar informações gerais de forma organizada, utilizando componentes reutilizáveis e armazenamento 
+de dados no microsoft Access (futuramente)
 
-Este projeto foi desenvolvido durante os estudos na **ApexDojoHub**, com o objetivo de praticar conceitos modernos do desenvolvimento Front-end utilizando React.
+Este projeto foi desenvolvido para **apexdojohub**, com o objetivo de fazer o controle financeiro da academia.
 
 ---
 
 ## 🚀 Demonstração
 
-🔗 **Deploy:** _(adicione aqui o link quando publicar)_
+🔗 **Deploy:** _(https://github.com/nsoares-dev/apexdojohub)_
 
 ---
 
@@ -82,7 +83,7 @@ src/
 ### Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/nsoares-dev/apexdojohub
 ```
 
 ### Acesse a pasta do projeto
@@ -136,6 +137,7 @@ A aplicação utiliza gráficos para facilitar a visualização das informaçõe
 ## 💾 Persistência de dados
 
 Os dados são armazenados utilizando **LocalStorage**, permitindo que as informações permaneçam disponíveis mesmo após atualizar ou fechar o navegador.
+*temporário*
 
 ---
 
@@ -155,23 +157,23 @@ O principal objetivo foi desenvolver uma aplicação próxima de um cenário rea
 
 Algumas funcionalidades que podem ser adicionadas futuramente:
 
-- [ ] Integração com API
-- [ ] Sistema de autenticação de usuários
-- [ ] Banco de dados real
-- [ ] Filtros avançados de transações
-- [ ] Exportação de relatórios financeiros
-- [ ] Melhorias na responsividade
+- [x] Integração com API
+- [x] Sistema de autenticação de usuários
+- [x] Banco de dados real
+- [x] Filtros avançados de transações
+- [x] Exportação de relatórios financeiros
+- [x] Melhorias na responsividade
 
 ---
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Gabriel**
+Desenvolvido por **Nicolas Oliveira**
 
-Projeto criado para fins de estudo e evolução no desenvolvimento Front-end.
+Projeto criado para controle financeiro.
 
 ---
 
 ## 📄 Licença
 
-Este projeto está disponível para estudos e aprendizado.
+Este projeto está privado apenas para desenvolvedores e proprietário do projeto.
