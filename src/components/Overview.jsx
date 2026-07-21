@@ -1,4 +1,4 @@
-import { MONTHS, formatCurrency, formatDate, getMonth, getYearSummary, formatarEixo } from '../utils/util';
+import { MONTHS, formatCurrency, formatDate, getMonth, getYearSummary, formatCurrencyCompacto } from '../utils/util';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, Legend } from 'recharts';
 import { SectionTitle, StatCard } from './Layout';
 import { useState } from 'react';
@@ -129,7 +129,7 @@ export function Overview({ transacoes, ano, onAnoChange }) {
                         />
 
                         <YAxis
-                            tickFormatter={formatarEixo}
+                            tickFormatter={formatCurrencyCompacto}
                             tick={{ fill: '#78716c', fontSize: 12 }}
                             tickLine={false}
                             axisLine={false}

@@ -19,14 +19,14 @@ export function Alunos({ alunos, onCreate, onDelete }) {
 
     const submit = (event) => {
         event.preventDefault();
-        onCreate({ ...form, fee: Number(form.fee), dueDay: Number(form.dueDay) }); 
-        setShowModal(false); 
+        onCreate({ ...form, fee: Number(form.fee), dueDay: Number(form.dueDay) });
+        setShowModal(false);
         setForm(emptyStudent);
     };
 
     return <section>
-        <div className="toolbar filters">
-            <input value={query} placeholder="Buscar aluno ou telefone…" onChange={(event) => setQuery(event.target.value)} />
+        <div className="bar filters">
+            <input type='text' value={query} placeholder="Buscar aluno ou telefone…" onChange={(event) => setQuery(event.target.value)} />
             <select value={status} onChange={(event) => setStatus(event.target.value)}>
                 <option value="Ativo">Ativos</option>
                 <option value="Inativo">Inativos</option>
@@ -41,19 +41,14 @@ export function Alunos({ alunos, onCreate, onDelete }) {
                 <option>Muay Thai</option>
                 <option>Teens Jiu-jitsu</option>
             </select>
-            <button className="button red" onClick={() => setShowModal(true)}>+ Aluno</button>
+            <button className="btn red" onClick={() => setShowModal(true)}>+ Aluno</button>
         </div>
         <div className="bar" style={{ marginBottom: '5px' }}>
             <span className="count" id="aTot">{alunosCad > 1 ? `${alunosCad} Alunos ativos` : `${alunosCad} Aluno ativo`} </span>
         </div>
         <span className="count" style={{ marginTop: '-6px' }} id="aNiver" >🎂 Aniversariantes do mês: '{niver.join(', ')}</span>
 
-        {/* <div className="metrics-grid compact">
-            <StatCard label="Alunos ativos" valor={(alunos.filter((item) => item.status == 'Ativo').length)} />
-            <StatCard label="Mensalidades previstas" valor={formatCurrency(alunos.filter((item) => item.status === 'Ativo').reduce((total, item) => total + item.fee, 0))} />
-        </div> */}
-        {/* <SectionTitle action={<span className="count">{lista.length} aluno(s)</span>}>Cadastro de alunos</SectionTitle> */}
-        <div className="table-wrap" style={{ marginTop: '10px' }}>
+        <div className="twrap" style={{ marginTop: '10px' }}>
             <table>
                 <thead>
                     <tr>
@@ -75,7 +70,7 @@ export function Alunos({ alunos, onCreate, onDelete }) {
                         <td className="mut">{aluno.plan}</td>
                         <td className="money">{formatCurrency(aluno.fee)}</td>
                         <td className="hide-mobile mut">{aluno.dueDay}</td>
-                        <td> <a className="wa" target="_blank" href={`https://wa.me/55${aluno.phone}`}>{aluno.phone}</a></td>
+                        <td><a className="wa" target="_blank" href={`https://wa.me/55${aluno.phone}`}>{aluno.phone}</a></td>
                         {/* <td><button className="text-button delete" onClick={() => onDelete(aluno.id)}>Excluir</button></td></tr>)} */}
                         <td className="rowbtns">
                             <button title="Editar" onClick={() => onDelete(aluno.id)}>✎</button>
@@ -87,33 +82,81 @@ export function Alunos({ alunos, onCreate, onDelete }) {
         </div>
         {
             showModal &&
-            <Modal title="Novo aluno" onClose={() => setShowModal(false)}>
-                <form className="form-grid" onSubmit={submit}>
-                    <label className="full">
-                        Nome
-                        <input value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} required />
-                    </label>
-                    <label>
-                        Modalidade
-                        <input value={form.modality} onChange={(event) => setForm({ ...form, modality: event.target.value })} />
-                    </label>
-                    <label>
-                        Graduação
-                        <input value={form.belt} onChange={(event) => setForm({ ...form, belt: event.target.value })} />
-                    </label>
-                    <label>
-                        Mensalidade
-                        <input type="number" step="0.01" value={form.fee} onChange={(event) => setForm({ ...form, fee: event.target.value })} required />
-                    </label>
-                    <label>
-                        Vencimento
-                        <input type="number" min="1" max="31" value={form.dueDay} onChange={(event) => setForm({ ...form, dueDay: event.target.value })} required />
-                    </label>
-                    <label className="full">
-                        Telefone
-                        <input value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} />
-                    </label>
-                    <div className="modal-actions"><button type="button" className="button ghost" onClick={() => setShowModal(false)}>Cancelar</button>
-                        <button className="button red">Salvar</button></div></form></Modal>
+            <div className="overlay">
+                <div className="modal" onClose={() => setShowModal(false)}>
+                    <h3>Novo Aluno</h3>
+                    <div className="frm" onSubmit={submit}>
+                        <div className="full">
+                            <label>Nome</label>
+                            <input value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} required />
+                        </div>
+
+                        <div>
+                            <label>Status</label>
+                            <select>
+                                <option selected="">Ativo</option>
+                                <option>Inativo</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label> Modalidade</label>
+                            <select >
+                                <option selected="">Jiu-jitsu</option>
+                                <option>Muay Thai</option><option>Kids Jiu-jitsu</option><option>Kids Muay Thai</option><option>Teens Jiu-jitsu</option><option>2 Modalidades</option></select>
+                        </div>
+
+                        <div>
+                            <label>Graduação</label>
+                            <input value={form.belt} onChange={(event) => setForm({ ...form, belt: event.target.value })} />
+                        </div>
+
+                        <div>
+                            <label>Plano</label>
+                            <select>
+                                <option selected="">Mensal</option>
+                                <option>Semestral</option>
+                                <option>Anual</option>
+                                <option>Gympass</option>
+                                <option>Freepass</option>
+                                <option>Personal</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label>Valor Mensal(R$)</label>
+                            <input type="number" min="1" max="31" value={form.dueDay} onChange={(event) => setForm({ ...form, dueDay: event.target.value })} required />
+                        </div>
+
+                        <div>
+                            <label>Dia do Vencimento</label>
+                            <input type="number" min="1" max="31" value={form.dueDay} onChange={(event) => setForm({ ...form, dueDay: event.target.value })} required />
+                        </div>
+
+                        <div>
+                            <label>Celular</label>
+                            <input placeholder="11999999999" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} />
+                        </div>
+
+                        <div>
+                            <label>Contato de Emergência</label>
+                            <input value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} />
+                        </div>
+
+                        <div>
+                            <label>Aniversário</label>
+                            <input type="date" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} />
+                        </div>
+                        <div>
+                            <label>Matrícula</label>
+                            <input type="date" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} />
+                        </div>
+
+                    </div>
+                    <div className="macts">
+                        <button type="button" className="btn ghost" onClick={() => setShowModal(false)}>Cancelar</button>
+                        <button className="btn red">Salvar</button>
+                    </div>
+                </div>
+            </div>
         }</section >;
 }

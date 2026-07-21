@@ -20,6 +20,61 @@ export const inicialTransacoes = [
         aluno: "Anderson Oliveira da Silva Bezerra",
         fdp: "Pix",
         observacao: "3 meses atrasados"
+    },{
+        id: 'tx-11',
+        descricao: "teste",
+        data: "2026-07-07",
+        valor: 540.0,
+        status: "",
+        banco: "Pagbank",
+        tipo: "Fixo",
+        aluno: "Anderson Oliveira da Silva Bezerra",
+        fdp: "Pix",
+        observacao: "3 meses atrasados"
+    },{
+        id: 'tx-12',
+        descricao: "Simone Oliveira Santos",
+        data: "2026-07-07",
+        valor: 540.0,
+        status: "",
+        banco: "Pagbank",
+        tipo: "Fixo",
+        aluno: "Anderson Oliveira da Silva Bezerra",
+        fdp: "Pix",
+        observacao: "3 meses atrasados"
+    },{
+        id: 'tx-13',
+        descricao: "Simone Oliveira Santos",
+        data: "2026-07-07",
+        valor: 540.0,
+        status: "",
+        banco: "Pagbank",
+        tipo: "Fixo",
+        aluno: "Anderson Oliveira da Silva Bezerra",
+        fdp: "Pix",
+        observacao: "3 meses atrasados"
+    },{
+        id: 'tx-14',
+        descricao: "Simone Oliveira Santos",
+        data: "2026-07-07",
+        valor: 540.0,
+        status: "",
+        banco: "Pagbank",
+        tipo: "Fixo",
+        aluno: "Anderson Oliveira da Silva Bezerra",
+        fdp: "Pix",
+        observacao: "3 meses atrasados"
+    },{
+        id: 'tx-15',
+        descricao: "Simone Oliveira Santos",
+        data: "2026-07-07",
+        valor: 540.0,
+        status: "",
+        banco: "Pagbank",
+        tipo: "Fixo",
+        aluno: "Anderson Oliveira da Silva Bezerra",
+        fdp: "Pix",
+        observacao: "3 meses atrasados"
     }
 ];
 

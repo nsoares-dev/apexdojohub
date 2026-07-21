@@ -1,8 +1,16 @@
 export const MONTHS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
-export const formatCurrency = (value) => new Intl.NumberFormat('pt-BR', {
+export const formatCurrency = (value) => 
+  new Intl.NumberFormat('pt-BR', {
   style: 'currency',
   currency: 'BRL',
+}).format(value);
+
+export const formatCurrencyCompacto = (value) => 
+  new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+  notation: 'compact'
 }).format(value);
 
 export const formatDate = (value) => {
@@ -26,10 +34,3 @@ export function getYearSummary(transacoes, ano) {
   const saida = yearly.filter((transacao) => transacao.valor < 0).reduce((total, transacao) => total + Math.abs(transacao.valor), 0);
   return { entrada, saida, resultado: entrada - saida };
 }
-
-export const formatarEixo = (valor) =>
-  new Intl.NumberFormat('pt-BR', {
-    notation: 'compact',
-    style: 'currency',
-    currency: 'BRL',
-  }).format(valor);
