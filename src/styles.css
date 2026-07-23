@@ -498,6 +498,389 @@ th.money {
   box-shadow: 0 6px 20px #0004
 }
 
+/* Fundo de tela inspirado no Dashboard */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #F4F4F0; /* Cor exata do fundo da imagem */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* O Card Central */
+.login-card {
+  background-color: #FFFFFF;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border-top: 5px solid #1A1A1A; /* Detalhe inspirado no cabeçalho */
+}
+
+/* Animação de entrada suave */
+.animated-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Identidade Visual do Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.login-header h1 {
+  font-size: 24px;
+  color: #1A1A1A;
+  margin: 0 0 5px 0;
+  letter-spacing: 1px;
+}
+
+.login-header p {
+  font-size: 10px;
+  color: #666;
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Formulário e Inputs */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+.input-group input {
+  padding: 12px 15px;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #FAFAFA;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #1A1A1A;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
+/* Opções (Lembrar-me e Esqueci a Senha) */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #555;
+  cursor: pointer;
+}
+
+.forgot-password {
+  color: #B22222; /* Tom de vermelho do dashboard */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.forgot-password:hover {
+  color: #D32F2F;
+}
+
+/* Botão de Ação */
+.login-button {
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  padding: 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background-color: #333333;
+}
+
+.login-button:active {
+  transform: scale(0.98);
+}
+
+.login-button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Mensagem de Erro */
+.login-error {
+  background-color: #FDE8E8;
+  color: #D32F2F;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid #F8B4B4;
+}
+
+/* AJUSTE DO HEADER PARA FICAR LADO A LADO */
+.header-content {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    /* BORDA VERMELHA PRA VER O TAMANHO DO CONTAINER PAI */
+    /* border: 2px solid red !important;  */
+}
+
+.brand {
+    text-align: left !important;
+    margin-left:390px !important;
+    flex: none !important; /* Impede a div de esticar e roubar o espaço do meio */
+    /* BORDA AZUL PRA VER SE O TÍTULO TÁ ESTICANDO */
+    /* border: 2px solid blue !important;  */
+}
+
+.user-profile {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    /* BORDA VERDE PRA VER O PERFIL */
+    /* border: 2px solid green !important;  */
+}
+
+/* =========================================
+   RESPONSIVIDADE PARA CELULAR (Telas até 768px)
+   ========================================= */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        padding: 10px 20px !important; /* Zera margens bizarras e dá um respiro nas bordas */
+        margin: 0 !important;
+        box-sizing: border-box !important; /* Impede que o padding vaze da tela */
+    }
+
+    .brand {
+        flex: 1 !important;
+        text-align: left !important;
+        overflow: hidden !important; /* Corta o que sobrar em vez de empurrar a tela */
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .brand h1 {
+        font-size: 1.2rem !important; 
+        margin: 0 !important;
+        white-space: nowrap !important; /* Impede o título de quebrar linha */
+        text-overflow: ellipsis !important; /* Coloca '...' se o nome do Dojo for muito grande */
+    }
+
+
+
+    .user-profile {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .user-info-header .user-name {
+        display: none !important; /* Mostra só a foto, esconde o admin */
+    }
+
+    .user-avatar img {
+        width: 35px !important;
+        height: 35px !important;
+    }
+}
+
+.user-profile:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.user-name {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #B22222; /* O Vermelho do seu layout */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    overflow: hidden;
+    border: 2px solid #333;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===================================== */
+/* ESTILOS DA MODAL                      */
+/* ===================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(3px); /* Efeito bonito de desfoque no fundo */
+}
+
+.user-modal {
+    background-color: #FAFAFA;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 320px;
+    padding: 30px 20px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.animated-fade-down {
+    animation: fadeDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeDown {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+.modal-avatar-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #B22222;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 auto 15px auto;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(178, 34, 34, 0.3);
+}
+
+.modal-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-name {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    color: #1A1A1A;
+}
+
+.modal-email {
+    margin: 0 0 15px 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.modal-badge {
+    display: inline-block;
+    background-color: #1A1A1A;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.modal-divider {
+    border: none;
+    border-top: 1px solid #E0E0E0;
+    margin: 20px 0;
+}
+
+.btn-logout {
+    width: 100%;
+    background-color: #FDE8E8;
+    color: #D32F2F;
+    border: 1px solid #F8B4B4;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #D32F2F;
+    color: white;
+}
+
 @media(max-width:620px) {
   .hide-mobile {
     display: none

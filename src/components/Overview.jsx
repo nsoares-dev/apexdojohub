@@ -64,8 +64,6 @@ export function Overview({ transacoes, ano, onAnoChange }) {
         }));
     };
 
-
-
     return <section>
         <div className="bar">
             <select value={anos} onChange={(event) => onYearChange(Number(event.target.value))}>

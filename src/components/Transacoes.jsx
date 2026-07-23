@@ -2,7 +2,7 @@
 import { useMemo, useState } from 'react';
 import { formatCurrency, formatDate, getMonth, getYear, MONTHS, normalizeText } from '../utils/util';
 import { Modal } from './Modal';
-import { SectionTitle } from './Layout';
+// import { SectionTitle } from './Layout';
 
 const emptyTransaction = { date: new Date().toISOString().slice(0, 10), person: '', valor: '', banco: 'PagBank', tipo: 'Variável', notes: '' };
 
