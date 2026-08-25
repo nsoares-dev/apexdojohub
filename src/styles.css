@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
-:root {
+.finance-app {
   --bg: #F1EFE9;
   --paper: #FFFFFF;
   --ink: #17181A;
@@ -14,73 +14,90 @@
   --disp: 'Archivo Black', 'Arial Black', sans-serif;
   --body: 'Archivo', -apple-system, 'Segoe UI', sans-serif;
   --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  width: 100%;
+  min-height: 100vh;
 }
 
-* {
+.finance-app * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
-html,
-body {
+/* =========================================
+   CORREÇÃO 1: ESPAÇO EM BRANCO NO iOS
+========================================= */
+.finance-app,.finance-app {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--body);
-  font-size: 15px
+  font-size: 15px;
+
+  /* Trava o vazamento lateral e o fundo infinito no iPhone */
+  height: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg);
 }
 
-button {
+/* Garante que o App ocupe no mínimo a tela toda do celular (dvh = dinâmico no iOS) */
+.finance-app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.finance-app button {
   font-family: var(--body);
-  cursor: pointer
+  cursor: pointer;
 }
 
-input,
-select,
+.finance-app input,.finance-app 
+select,.finance-app 
 textarea {
   font-family: var(--body);
-  font-size: 14px
+  font-size: 14px;
 }
 
 /* ---------- topo ---------- */
-header {
+.finance-app header {
   background: var(--ink);
   color: #fff;
-  padding: 18px 20px 0
+  padding: 18px 20px 0;
 }
 
-.brand {
+.finance-app .brand {
   max-width: 1080px;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
-.brand h1 {
+.finance-app .brand h1 {
   font-family: var(--disp);
   font-size: clamp(19px, 4vw, 26px);
   letter-spacing: .5px;
   text-transform: uppercase;
-  line-height: 1.1
+  line-height: 1.1;
 }
 
-.brand .sub {
+.finance-app .brand .sub {
   color: #B9B7AE;
   font-size: 12px;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  margin-top: 4px
+  margin-top: 4px;
 }
 
 /* a faixa: barra preta com ponta vermelha */
-.belt {
+.finance-app .belt {
   max-width: 1080px;
   margin: 14px auto 0;
   height: 10px;
   background: linear-gradient(90deg, var(--ink) 0 78%, var(--red) 78% 96%, var(--ink) 96%);
   border-top: 1px solid #3a3a3a;
-  position: relative
+  position: relative;
 }
 
-.belt::after {
+.finance-app .belt::after {
   content: '';
   position: absolute;
   left: 80%;
@@ -90,18 +107,18 @@ header {
   background: #fff2;
 }
 
-nav {
-  background: var(--ink)
+.finance-app nav {
+  background: var(--ink);
 }
 
-.tabs {
+.finance-app .tabs {
   max-width: 1080px;
   margin: 0 auto;
   display: flex;
-  overflow-x: auto
+  overflow-x: auto;
 }
 
-.tabs button {
+.finance-app .tabs button {
   background: none;
   border: none;
   color: #B9B7AE;
@@ -111,74 +128,77 @@ nav {
   letter-spacing: 1px;
   text-transform: uppercase;
   border-bottom: 3px solid transparent;
-  white-space: nowrap
+  white-space: nowrap;
 }
 
-.tabs button.on {
+.finance-app .tabs button.on {
   color: #fff;
-  border-bottom-color: var(--red)
+  border-bottom-color: var(--red);
 }
 
-main {
+.finance-app main {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 20px 14px 80px
+  padding: 20px 14px 80px;
+  flex: 1;
+  /* Faz o main empurrar o resto, arrumando o espaço em branco */
+  width: 100%;
 }
 
-.hidden {
-  display: none !important
+.finance-app .hidden {
+  display: none !important;
 }
 
 /* ---------- cards ---------- */
-.grid {
+.finance-app .grid {
   display: grid;
-  gap: 12px
+  gap: 12px;
 }
 
-.g4 {
-  grid-template-columns: repeat(4, 1fr)
+.finance-app .g4 {
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.g2 {
-  grid-template-columns: repeat(2, 1fr)
+.finance-app .g2 {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 @media(max-width:760px) {
-  .g4 {
-    grid-template-columns: repeat(2, 1fr)
+  .finance-app .g4 {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.card {
+.finance-app .card {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 10px;
-  padding: 16px
+  padding: 16px;
 }
 
-.card .lbl {
+.finance-app .card .lbl {
   font-size: 11px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--ink2);
-  margin-bottom: 6px
+  margin-bottom: 6px;
 }
 
-.card .val {
+.finance-app .card .val {
   font-family: var(--mono);
   font-size: clamp(18px, 3vw, 24px);
-  font-weight: 600
+  font-weight: 600;
 }
 
-.positivo {
-  color: var(--green)
+.finance-app .positivo {
+  color: var(--green);
 }
 
-.negativo {
-  color: var(--red)
+.finance-app .negativo {
+  color: var(--red);
 }
 
-.hero {
+.finance-app .hero {
   background: var(--ink);
   color: #fff;
   border: none;
@@ -187,133 +207,133 @@ main {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px
+  gap: 10px;
 }
 
-.hero .lbl {
-  color: #B9B7AE
+.finance-app .hero .lbl {
+  color: #B9B7AE;
 }
 
-.hero .val {
-  font-size: clamp(26px, 5vw, 38px)
+.finance-app .hero .val {
+  font-size: clamp(26px, 5vw, 38px);
 }
 
-.hero .tip {
+.finance-app .hero .tip {
   font-size: 12px;
-  color: #8a887f
+  color: #8a887f;
 }
 
-.sect {
+.finance-app .sect {
   margin: 26px 0 10px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 8px
+  gap: 8px;
 }
 
-.sect h2 {
+.finance-app .sect h2 {
   font-family: var(--disp);
   font-size: 15px;
   letter-spacing: 1px;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 
-.sect h2::after {
+.finance-app .sect h2::after {
   content: '';
   display: block;
   width: 44px;
   height: 4px;
   background: var(--red);
-  margin-top: 4px
+  margin-top: 4px;
 }
 
 /* ---------- controles ---------- */
-.bar {
+.finance-app .bar {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   align-items: center;
-  margin: 14px 0
+  margin: 14px 0;
 }
 
-.bar input[type=text],
-.bar select,
+.finance-app .bar input[type=text],.finance-app 
+.bar select,.finance-app 
 .bar input[type=month] {
   padding: 9px 11px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fff
+  background: #fff;
 }
 
-.bar input[type=text] {
+.finance-app .bar input[type=text] {
   flex: 1;
-  min-width: 160px
+  min-width: 160px;
 }
 
-.btn {
+.finance-app .btn {
   padding: 9px 15px;
   border-radius: 8px;
   border: 1px solid var(--ink);
   background: var(--ink);
   color: #fff;
   font-weight: 600;
-  font-size: 13px
+  font-size: 13px;
 }
 
-.btn.ghost {
+.finance-app .btn.ghost {
   background: #fff;
-  color: var(--ink)
+  color: var(--ink);
 }
 
-.btn.red {
+.finance-app .btn.red {
   background: var(--red);
-  border-color: var(--red)
+  border-color: var(--red);
 }
 
-.btn.sm {
+.finance-app .btn.sm {
   padding: 5px 10px;
-  font-size: 12px
+  font-size: 12px;
 }
 
-.chip {
+.finance-app .chip {
   display: inline-block;
   padding: 3px 9px;
   border-radius: 99px;
   font-size: 11.5px;
-  font-weight: 600
+  font-weight: 600;
 }
 
-.chip.ok {
+.finance-app .chip.ok {
   background: var(--green-bg);
-  color: var(--green)
+  color: var(--green);
 }
 
-.chip.no {
+.finance-app .chip.no {
   background: var(--red-bg);
-  color: var(--red)
+  color: var(--red);
 }
 
-.chip.mut {
+.finance-app .chip.mut {
   background: #ECEAE2;
-  color: var(--ink2)
+  color: var(--ink2);
 }
 
-/* ---------- tabela ---------- */
-.twrap {
+/* ---------- tabela padrão ---------- */
+.finance-app .twrap {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 10px;
-  overflow: auto
+  overflow: auto;
 }
 
-table {
+.finance-app table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13.5px
+  font-size: 13.5px;
 }
 
-th {
+.finance-app th {
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -323,82 +343,82 @@ th {
   border-bottom: 2px solid var(--ink);
   background: #FAF9F5;
   position: sticky;
-  top: 0
+  top: 0;
 }
 
-td {
+.finance-app td {
   padding: 9px 12px;
   border-bottom: 1px solid #EFEDE5;
-  vertical-align: top
+  vertical-align: top;
 }
 
-tr:hover td {
+.finance-app tr:hover td {
   background: #FAF9F3;
 }
 
-td.money {
+.finance-app td.money {
   font-family: var(--mono);
   font-weight: 600;
   white-space: nowrap;
-  text-align: right
+  text-align: right;
 }
 
-th.money {
-  text-align: right
+.finance-app th.money {
+  text-align: right;
 }
 
-.a {
-  max-width: 320px
+.finance-app .a {
+  max-width: 320px;
 }
 
-.mut {
+.finance-app .mut {
   color: var(--ink2);
-  font-size: 12px
+  font-size: 12px;
 }
 
-.rowbtns {
-  white-space: nowrap
+.finance-app .rowbtns {
+  white-space: nowrap;
 }
 
-.rowbtns button {
+.finance-app .rowbtns button {
   background: none;
   border: none;
   font-size: 15px;
   padding: 2px 5px;
-  opacity: .55
+  opacity: .55;
 }
 
-.rowbtns button:hover {
-  opacity: 1
+.finance-app .rowbtns button:hover {
+  opacity: 1;
 }
 
 /* ---------- gráfico ---------- */
-.chart {
+.finance-app .chart {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 16px;
-  overflow-x: auto
+  overflow-x: none;
 }
 
-.legend {
+.finance-app .legend {
   display: flex;
   gap: 16px;
   font-size: 12px;
   color: var(--ink2);
-  margin-bottom: 8px
+  margin-bottom: 8px;
 }
 
-.legend i {
+.finance-app .legend i {
   display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 2px;
-  margin-right: 5px
+  margin-right: 5px;
 }
 
 /* ---------- modal ---------- */
-.overlay {
+.finance-app .overlay {
   position: fixed;
   inset: 0;
   background: #000a;
@@ -406,85 +426,92 @@ th.money {
   align-items: center;
   justify-content: center;
   padding: 14px;
-  z-index: 50
+  z-index: 50;
 }
 
-.modal {
+.finance-app .modal {
   background: #fff;
   border-radius: 12px;
-  padding: 20px;
+  /* Adicionando mais padding embaixo (30px) para os botões respirarem */
+  padding: 20px 20px 30px 20px;
   width: 100%;
   max-width: 520px;
-  max-height: 92vh;
-  overflow: auto
+  /* 85dvh impede que a modal entre debaixo da barra do iPhone */
+  max-height: 85dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Deixa o scroll liso no iOS */
+  box-sizing: border-box;
 }
 
-.modal h3 {
+.finance-app .modal h3 {
   font-family: var(--disp);
   font-size: 15px;
   text-transform: uppercase;
-  margin-bottom: 14px
+  margin-bottom: 14px;
 }
 
-.frm {
+.finance-app .frm {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px
+  gap: 10px;
 }
 
-.frm .full {
-  grid-column: 1/-1
+.finance-app .frm .full {
+  grid-column: 1/-1;
 }
 
-.frm label {
+.finance-app .frm label {
   display: block;
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--ink2);
-  margin-bottom: 4px
+  margin-bottom: 4px;
 }
 
-.frm input,
+.finance-app .frm input,.finance-app 
 .frm select {
   width: 100%;
   padding: 9px 10px;
   border: 1px solid var(--line);
-  border-radius: 8px
+  border-radius: 8px;
+  box-sizing: border-box;
+  /* Garante que os inputs caibam dentro do grid */
 }
 
-.macts {
+.finance-app .macts {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  margin-top: 16px
+  margin-top: 16px;
 }
 
-.empty {
+.finance-app .empty {
   padding: 34px;
   text-align: center;
-  color: var(--ink2)
+  color: var(--ink2);
 }
 
-.note {
+.finance-app .note {
   font-size: 12px;
   color: var(--ink2);
-  margin-top: 8px
+  margin-top: 8px;
 }
 
-.count {
+.finance-app .count {
   font-size: 12.5px;
-  color: var(--ink2)
+  color: var(--ink2);
 }
 
-.wa {
+.finance-app .wa {
   color: var(--green);
   text-decoration: none;
   font-weight: 600;
-  font-size: 12.5px
+  font-size: 12.5px;
 }
 
-.toast {
+.finance-app .toast {
   position: fixed;
   bottom: 18px;
   left: 50%;
@@ -495,60 +522,58 @@ th.money {
   border-radius: 99px;
   font-size: 13px;
   z-index: 99;
-  box-shadow: 0 6px 20px #0004
+  box-shadow: 0 6px 20px #0004;
 }
 
-/* Fundo de tela inspirado no Dashboard */
-.login-container {
+/* ---------- LOGIN (Dashboard) ---------- */
+.finance-app .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #F4F4F0; /* Cor exata do fundo da imagem */
+  background-color: #F4F4F0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* O Card Central */
-.login-card {
+.finance-app .login-card {
   background-color: #FFFFFF;
   width: 100%;
   max-width: 420px;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  border-top: 5px solid #1A1A1A; /* Detalhe inspirado no cabeçalho */
+  border-top: 5px solid #1A1A1A;
 }
 
-/* Animação de entrada suave */
-.animated-fade-in {
-  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.finance-app .animated-fade-in {
+  animation: finance-fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes fadeIn {
+@keyframes finance-fadeIn {
   0% {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Identidade Visual do Header */
-.login-header {
+.finance-app .login-header {
   text-align: center;
   margin-bottom: 35px;
 }
 
-.login-header h1 {
+.finance-app .login-header h1 {
   font-size: 24px;
   color: #1A1A1A;
   margin: 0 0 5px 0;
   letter-spacing: 1px;
 }
 
-.login-header p {
+.finance-app .login-header p {
   font-size: 10px;
   color: #666;
   margin: 0;
@@ -556,26 +581,25 @@ th.money {
   text-transform: uppercase;
 }
 
-/* Formulário e Inputs */
-.login-form {
+.finance-app .login-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.input-group {
+.finance-app .input-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.input-group label {
+.finance-app .input-group label {
   font-size: 13px;
   font-weight: 600;
   color: #333;
 }
 
-.input-group input {
+.finance-app .input-group input {
   padding: 12px 15px;
   border: 1px solid #E0E0E0;
   border-radius: 4px;
@@ -584,22 +608,21 @@ th.money {
   transition: all 0.3s ease;
 }
 
-.input-group input:focus {
+.finance-app .input-group input:focus {
   outline: none;
   border-color: #1A1A1A;
   background-color: #FFFFFF;
   box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
 }
 
-/* Opções (Lembrar-me e Esqueci a Senha) */
-.login-options {
+.finance-app .login-options {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 13px;
 }
 
-.checkbox-container {
+.finance-app .checkbox-container {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -607,19 +630,18 @@ th.money {
   cursor: pointer;
 }
 
-.forgot-password {
-  color: #B22222; /* Tom de vermelho do dashboard */
+.finance-app .forgot-password {
+  color: #B22222;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s;
 }
 
-.forgot-password:hover {
+.finance-app .forgot-password:hover {
   color: #D32F2F;
 }
 
-/* Botão de Ação */
-.login-button {
+.finance-app .login-button {
   background-color: #1A1A1A;
   color: #FFFFFF;
   padding: 14px;
@@ -633,21 +655,20 @@ th.money {
   margin-top: 10px;
 }
 
-.login-button:hover {
+.finance-app .login-button:hover {
   background-color: #333333;
 }
 
-.login-button:active {
+.finance-app .login-button:active {
   transform: scale(0.98);
 }
 
-.login-button.loading {
+.finance-app .login-button.loading {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-/* Mensagem de Erro */
-.login-error {
+.finance-app .login-error {
   background-color: #FDE8E8;
   color: #D32F2F;
   padding: 12px;
@@ -659,230 +680,616 @@ th.money {
 }
 
 /* AJUSTE DO HEADER PARA FICAR LADO A LADO */
-.header-content {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    width: 100% !important;
-    /* BORDA VERMELHA PRA VER O TAMANHO DO CONTAINER PAI */
-    /* border: 2px solid red !important;  */
+.finance-app .header-content {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
 }
 
-.brand {
-    text-align: left !important;
-    margin-left:390px !important;
-    flex: none !important; /* Impede a div de esticar e roubar o espaço do meio */
-    /* BORDA AZUL PRA VER SE O TÍTULO TÁ ESTICANDO */
-    /* border: 2px solid blue !important;  */
+.finance-app .brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 500px !important;
+  padding: 0;
+  flex-shrink: 0;
 }
 
-.user-profile {
-    display: flex !important;
-    align-items: center !important;
-    gap: 15px !important;
-    /* BORDA VERDE PRA VER O PERFIL */
-    /* border: 2px solid green !important;  */
+.finance-app .user-profile {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
 }
 
-/* =========================================
-   RESPONSIVIDADE PARA CELULAR (Telas até 768px)
-   ========================================= */
-@media (max-width: 768px) {
-    .header-content {
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        width: 100% !important;
-        padding: 10px 20px !important; /* Zera margens bizarras e dá um respiro nas bordas */
-        margin: 0 !important;
-        box-sizing: border-box !important; /* Impede que o padding vaze da tela */
-    }
-
-    .brand {
-        flex: 1 !important;
-        text-align: left !important;
-        overflow: hidden !important; /* Corta o que sobrar em vez de empurrar a tela */
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .brand h1 {
-        font-size: 1.2rem !important; 
-        margin: 0 !important;
-        white-space: nowrap !important; /* Impede o título de quebrar linha */
-        text-overflow: ellipsis !important; /* Coloca '...' se o nome do Dojo for muito grande */
-    }
-
-
-
-    .user-profile {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .user-info-header .user-name {
-        display: none !important; /* Mostra só a foto, esconde o admin */
-    }
-
-    .user-avatar img {
-        width: 35px !important;
-        height: 35px !important;
-    }
+.finance-app .user-profile:hover {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
-.user-profile:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+.finance-app .user-name {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.user-name {
-    color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 500;
+.finance-app .user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #B22222;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  overflow: hidden;
+  border: 2px solid #333;
 }
 
-.user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #B22222; /* O Vermelho do seu layout */
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 16px;
-    overflow: hidden;
-    border: 2px solid #333;
-}
-
-.user-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.finance-app .user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ===================================== */
 /* ESTILOS DA MODAL                      */
 /* ===================================== */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    backdrop-filter: blur(3px); /* Efeito bonito de desfoque no fundo */
+.finance-app .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
 }
 
-.user-modal {
-    background-color: #FAFAFA;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 320px;
-    padding: 30px 20px;
-    position: relative;
-    text-align: center;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+.finance-app .user-modal {
+  background-color: #FAFAFA;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 320px;
+  padding: 30px 20px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
-.animated-fade-down {
-    animation: fadeDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.finance-app .animated-fade-down {
+  animation: finance-fadeDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes fadeDown {
-    0% { opacity: 0; transform: translateY(-30px); }
-    100% { opacity: 1; transform: translateY(0); }
+@keyframes finance-fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.close-modal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
+.finance-app .close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+}
+
+.finance-app .close-modal:hover {
+  color: #000;
+}
+
+.finance-app .modal-avatar-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #B22222;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 auto 15px auto;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(178, 34, 34, 0.3);
+}
+
+.finance-app .modal-avatar-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.finance-app .modal-name {
+  margin: 0 0 5px 0;
+  font-size: 20px;
+  color: #1A1A1A;
+}
+
+.finance-app .modal-email {
+  margin: 0 0 15px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.finance-app .modal-badge {
+  display: inline-block;
+  background-color: #1A1A1A;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.finance-app .modal-divider {
+  border: none;
+  border-top: 1px solid #E0E0E0;
+  margin: 20px 0;
+}
+
+.finance-app .btn-logout {
+  width: 100%;
+  background-color: #FDE8E8;
+  color: #D32F2F;
+  border: 1px solid #F8B4B4;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.finance-app .btn-logout:hover {
+  background-color: #D32F2F;
+  color: white;
+}
+
+/* ==========================================
+   ProfileDropdown.css - Estilo KokonutUI
+========================================== */
+
+.finance-app .kk-profile-wrapper {
+  position: relative;
+  width: 270px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.finance-app .kk-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #121212;
+  border: 1px solid #262626;
+  border-radius: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.finance-app .kk-trigger:hover {
+  background-color: #1a1a1a;
+  border-color: #333;
+}
+
+.finance-app .kk-trigger-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.finance-app .kk-trigger-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.finance-app .kk-trigger-email {
+  font-size: 13px;
+  color: #888888;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.finance-app .kk-avatar-ring {
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(135deg, #ff0080, #ff8c00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.finance-app .kk-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #121212;
+  object-fit: cover;
+  background-color: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.finance-app .kk-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background-color: #121212;
+  border: 1px solid #262626;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  animation: finance-kk-slide-down 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top center;
+}
+
+@keyframes finance-kk-slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.finance-app .kk-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  color: #e5e5e5;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.finance-app .kk-menu-item svg {
+  color: #a3a3a3;
+  transition: color 0.2s ease;
+}
+
+.finance-app .kk-menu-item:hover {
+  background-color: #262626;
+  color: #ffffff;
+}
+
+.finance-app .kk-menu-item:hover svg {
+  color: #ffffff;
+}
+
+.finance-app .kk-badge-blue {
+  margin-left: auto;
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.finance-app .kk-badge-purple {
+  margin-left: auto;
+  background-color: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.finance-app .kk-divider {
+  height: 1px;
+  background-color: #262626;
+  margin: 8px 4px;
+}
+
+.finance-app .kk-logout-btn {
+  background-color: rgba(220, 38, 38, 0.1) !important;
+  color: #ef4444 !important;
+  margin-top: 4px;
+}
+
+.finance-app .kk-logout-btn svg {
+  color: #ef4444 !important;
+}
+
+.finance-app .kk-logout-btn:hover {
+  background-color: rgba(220, 38, 38, 0.18) !important;
+}
+
+.finance-app .icon-spin {
+  animation: finance-spin 1s linear infinite;
+  color: #3b82f6 !important;
+}
+
+@keyframes finance-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.finance-app .sync-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  animation: finance-fadeInOverlay 0.3s ease-out forwards;
+}
+
+.finance-app .sync-modal-card {
+  background-color: #121212;
+  border: 1px solid #262626;
+  border-radius: 20px;
+  padding: 30px 24px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  animation: finance-popInCard 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+}
+
+.finance-app .sync-icon-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  background-color: rgba(16, 185, 129, 0.1);
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.finance-app .sync-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.finance-app .sync-message {
+  font-size: 13px;
+  color: #a3a3a3;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@keyframes finance-fadeInOverlay {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes finance-popInCard {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* =========================================
+   CORREÇÃO 2: TABELA GIGANTE (POSIÇÃO)
+========================================= */
+
+/* Centraliza os meses */
+.finance-app .text-center {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.finance-app .twrap-posicao {
+  max-height: 65vh;
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+.finance-app .twrap-posicao::-webkit-scrollbar {
+  height: 8px;
+}
+
+.finance-app .twrap-posicao::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: 0 0 10px 10px;
+}
+
+.finance-app .twrap-posicao::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 4px;
+}
+
+.finance-app .twrap-posicao::-webkit-scrollbar-thumb:hover {
+  background: var(--ink2);
+}
+
+.finance-app .twrap-posicao table {
+  min-width: max-content !important;
+  width: 100%;
+}
+
+.finance-app .twrap-posicao th,.finance-app 
+.twrap-posicao td {
+  white-space: nowrap !important;
+}
+
+/* Cabeçalho Fixo no Topo */
+.finance-app .twrap-posicao thead th {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+  background: #FAF9F5 !important;
+}
+
+/* Coluna Aluno Fixa na Esquerda (Scroll Horizontal) */
+.finance-app .twrap-posicao td.sticky-col {
+  position: sticky !important;
+  left: 0 !important;
+  z-index: 11 !important;
+  background: var(--paper) !important;
+  box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover na linha para o TD Fixo não perder a cor */
+.finance-app .twrap-posicao tr:hover td.sticky-col {
+  background: #FAF9F3 !important;
+}
+
+/* A Quina da tabela (O título "Aluno") */
+.finance-app .twrap-posicao thead th.sticky-col {
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 20 !important;
+  background: #FAF9F5 !important;
+}
+
+.finance-app .frm input[type="date"],.finance-app 
+.frm input[type="month"],.finance-app 
+.frm input[type="datetime-local"] {
+  width: 100%;
+  display: block;
+  -webkit-appearance: none;
+  /* Arranca o estilo botão cinza do iOS */
+  appearance: none;
+  background-color: #fff;
+  /* Fundo branco pra combinar com o resto */
+  box-sizing: border-box;
+}
+
+/* =========================================
+   CORREÇÃO 3: MEDIA QUERIES (MOBILE)
+========================================= */
+@media (max-width: 768px) {
+
+  /* Arruma o esmagamento dos inputs no modal de lançamentos */
+  .finance-app .frm {
+    grid-template-columns: 1fr;
+    /* Transforma as 2 colunas em 1 só */
+  }
+
+  .finance-app .header-content {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 10px 20px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .finance-app .brand {
+    flex: 1 !important;
+    text-align: left !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .finance-app .brand h1 {
+    font-size: 1.2rem !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .finance-app .user-profile {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .finance-app .user-info-header .user-name {
+    display: none !important;
+  }
+
+  .finance-app .user-avatar img {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .finance-app .kk-profile-wrapper {
+    width: auto;
+  }
+
+  .finance-app .kk-trigger-info {
+    display: none;
+  }
+
+  .finance-app .kk-trigger {
+    padding: 0;
+    background: transparent;
     border: none;
-    font-size: 24px;
-    color: #666;
-    cursor: pointer;
-}
+  }
 
-.close-modal:hover {
-    color: #000;
-}
-
-.modal-avatar-large {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: #B22222;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    font-weight: bold;
-    margin: 0 auto 15px auto;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(178, 34, 34, 0.3);
-}
-
-.modal-avatar-large img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.modal-name {
-    margin: 0 0 5px 0;
-    font-size: 20px;
-    color: #1A1A1A;
-}
-
-.modal-email {
-    margin: 0 0 15px 0;
-    font-size: 13px;
-    color: #666;
-}
-
-.modal-badge {
-    display: inline-block;
-    background-color: #1A1A1A;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-}
-
-.modal-divider {
+  .finance-app .kk-trigger:hover {
+    background: transparent;
     border: none;
-    border-top: 1px solid #E0E0E0;
-    margin: 20px 0;
-}
+  }
 
-.btn-logout {
-    width: 100%;
-    background-color: #FDE8E8;
-    color: #D32F2F;
-    border: 1px solid #F8B4B4;
-    padding: 10px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.btn-logout:hover {
-    background-color: #D32F2F;
-    color: white;
+  .finance-app .kk-menu {
+    right: 0;
+    left: auto;
+    width: 220px;
+  }
 }
 
 @media(max-width:620px) {
-  .hide-mobile {
-    display: none
+  .finance-app .hide-mobile {
+    display: none;
   }
 }

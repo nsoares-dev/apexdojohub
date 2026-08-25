@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import api from "./Services/Services"; // Importe a sua configuração do Axios aqui
+import { useNavigate } from "react-router-dom";
+import api from "../../Services/ApiServices"; // Importe a sua configuração do Axios aqui
 
 
 const Login = () => {
+  const navigate = useNavigate();
   const [loginOuEmail, setLoginOuEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [lembrarSenha, setLembrarSenha] = useState(false);
@@ -23,8 +25,8 @@ const Login = () => {
 
       // Se der sucesso, o cookie foi salvo pelo navegador.
       // Redireciona para o Dashboard do Apex Dojo Hub
-      localStorage.setItem("usuario", JSON.stringify(response.data.usuario));
-      window.location.href = "/";
+      sessionStorage.setItem("usuario", JSON.stringify(response.data.usuario));
+      navigate("/adminfinanceiro", { replace: true });
     } catch (err) {
       if (err.response && err.response.status === 401) {
         setErro("Login ou senha inválidos.");

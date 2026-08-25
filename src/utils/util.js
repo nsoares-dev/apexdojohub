@@ -16,13 +16,24 @@ export const formatCurrencyCompacto = (value) =>
 export const formatDate = (value) => {
   if (!value) return '-';
 
+  // Verifica se o valor já tem o 'T' (padrão da API C#). Se não tiver, adiciona.
+  const dataString = value.includes('T') ? value : `${value}T00:00:00`;
+
   return new Intl.DateTimeFormat('pt-BR', {
-    timeZone: 'UTC',
-  }).format(new Date(`${value}T00:00:00`));
+    timeZone: 'UTC', 
+  }).format(new Date(dataString));
 };
 
-export const getYear = (transacao) => Number(transacao.data.slice(0, 4));
-export const getMonth = (transacao) => Number(transacao.data.slice(5, 7));
+export const getYear = (transacao) => {
+    // Pega a data da API nova (dataEfetiva) ou do mock antigo (data)
+    const dataString = transacao.dataEfetiva || transacao.data;
+    return dataString ? Number(dataString.slice(0, 4)) : 0;
+};
+
+export const getMonth = (transacao) => {
+    const dataString = transacao.dataEfetiva || transacao.data;
+    return dataString ? Number(dataString.slice(5, 7)) : 0;
+};
 
 export function normalizeText(text = '') {
   return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();

@@ -1,6 +1,6 @@
-import { MONTHS, formatCurrency, formatDate, getMonth, getYearSummary, formatCurrencyCompacto } from '../utils/util';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, Legend } from 'recharts';
-import { SectionTitle, StatCard } from './Layout';
+import { MONTHS, formatCurrency, formatDate, formatCurrencyCompacto } from '../../../utils/util';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { SectionTitle } from './Layout';
 import { useState } from 'react';
 
 function Ranking({ titulo, transacoes, positivo }) {
@@ -8,17 +8,10 @@ function Ranking({ titulo, transacoes, positivo }) {
         <div className="sect">
             <SectionTitle>{titulo}</SectionTitle>
             <table className='twrap'>
-                {/* <thead>
-                    <tr>
-                        <th>Descrição</th>
-                        <th className="money">Valor</th>
-                    </tr>
-                </thead> */}
                 <tbody>
-                    {transacoes?.map((transacao) =>
-                        <tr key={transacao.id}>
-                            <td className='desc'>{transacao.descricao}
-                            </td>
+                    {transacoes?.map((transacao, index) =>
+                        <tr key={index}>
+                            <td className='desc'>{transacao.observacao}</td>
                             <td className={`money ${positivo ? 'positivo' : 'negativo'}`}>
                                 {formatCurrency(Math.abs(transacao.valor))}
                             </td>
@@ -29,33 +22,25 @@ function Ranking({ titulo, transacoes, positivo }) {
     </div>;
 }
 
-export function Overview({ transacoes, ano, onAnoChange }) {
-    const anos = [...new Set(transacoes.map((transacao) => Number(transacao.data.slice(0, 4))))].sort((a, b) => b - a);
-
-    const { entrada, saida, resultado } = getYearSummary(transacoes, ano);
-
-    const saldo = transacoes?.reduce((total, transacao) => total + transacao.valor, 0);
-
-    const monthly = MONTHS.map((nome, index) => {
-        const current = transacoes?.filter((transacao) => Number(transacao.data.slice(0, 4)) === ano && getMonth(transacao) === index + 1);
-        return { nome, entrada: current?.filter((item) => item.valor > 0).reduce((total, item) => total + item.valor, 0), saida: current?.filter((item) => item.valor < 0).reduce((total, item) => total + Math.abs(item.valor), 0) };
-    });
-
-    const max = Math.max(1, ...monthly.flatMap((item) => [item.entrada, item.saida]));
-
-    const topEntrada = transacoes?.filter((item) => Number(item.data.slice(0, 4)) === ano && item.valor > 0).sort((a, b) => b.valor - a.valor).slice(0, 5);
-
-    const topSaida = transacoes?.filter((item) => Number(item.data.slice(0, 4)) === ano && item.valor < 0).sort((a, b) => a.valor - b.valor).slice(0, 5);
-
-    const dataAtualizada = transacoes.reduce((maisRecente, atual) => {
-        return new Date(atual.data).getTime() > new Date(maisRecente.data).getTime() ? atual : maisRecente;
-    });
-
-    const data = dataAtualizada.data
-
-    const mes = new Date().getMonth();
-
+export function Overview({ resumoDados, loading, ano, onAnoChange }) {
     const [hidden, setHidden] = useState({});
+    if (loading || !resumoDados) {
+        return <div style={{ padding: '20px', textAlign: 'center' }}>Carregando painel...</div>;
+    }
+
+    // Extraindo as 4 tabelas que vieram da sua API
+    const { cards, grafico, maioresDespesas, maioresReceitas } = resumoDados;
+
+    // Como não estamos mais lendo do mock, geramos uma lista de anos para o select 
+    // (Pode ajustar os anos conforme a realidade da academia)
+    const anosDisponiveis = [2030, 2029, 2028, 2027, 2026, 2025, 2024, 2023];
+
+    // Adaptando o nome das variáveis do gráfico para bater com as chaves que o Recharts espera no seu código
+    const monthly = grafico?.map(item => ({
+        nome: item.mesNome,
+        entrada: item.entradas,
+        saida: Math.abs(item.saidas)
+    })) || [];
 
     const handleLegendaClick = ({ dataKey }) => {
         setHidden(prev => ({
@@ -66,37 +51,55 @@ export function Overview({ transacoes, ano, onAnoChange }) {
 
     return <section>
         <div className="bar">
-            <select value={anos} onChange={(event) => onYearChange(Number(event.target.value))}>
-                {anos.map((item) =>
-                    <option key={item}>{item}</option>)}
+            {/* Corrigido para value={ano} e usando a prop onAnoChange correta */}
+            <select value={ano} onChange={(event) => onAnoChange(Number(event.target.value))}>
+                {anosDisponiveis.map((item) =>
+                    <option key={item} value={item}>{item}</option>)}
             </select>
-            <span className="count">Visão consolidada de {anos}</span>
+            <span className="count">Visão consolidada de {ano}</span>
         </div>
 
         <div className="grid g4">
             <div className="card hero">
                 <div>
                     <div className="lbl">Saldo acumulado (tudo desde 2023)</div>
-                    <div className="val " id="kSaldo">{formatCurrency(entrada)}</div>
+                    <div className="val" id="kSaldo">{formatCurrency(cards.saldoAcumulado)}</div>
                 </div>
-                <div className="tip" id="kHoje">{`Atualizado com lançamentos até ${formatDate(data)}`}</div>
+                <div className="tip" id="kHoje">
+                    {cards.ultimaAtualizacao
+                        ? `Atualizado com lançamentos até ${formatDate(cards.ultimaAtualizacao)}`
+                        : 'Nenhum lançamento registrado'}
+                </div>
             </div>
+
             <div className="card">
                 <div className="lbl">Recebido no ano</div>
-                <div className="val positivo" id="kEnt">{formatCurrency(entrada)}</div>
+                <div className="val positivo" id="kEnt">{formatCurrency(cards.recebidoAno)}</div>
             </div>
+
             <div className="card">
                 <div className="lbl">Pago no ano</div>
-                <div className="val negativo" id="kSai">-{formatCurrency(saida)}</div>
+                <div className="val negativo" id="kSai">{formatCurrency(cards.pagoAno)}</div>
             </div>
+
             <div className="card">
                 <div className="lbl">Resultado do ano</div>
-                <div className={`val ${resultado >= 0 ? "positivo" : "negativo"}`} id="kRes">{formatCurrency(resultado)}</div>
+                <div className={`val ${cards.resultadoAno >= 0 ? "positivo" : "negativo"}`} id="kRes">
+                    {formatCurrency(cards.resultadoAno)}
+                </div>
             </div>
+
+            {/* Card do Mês Específico */}
             <div className="card">
-                <div className="lbl" id="kMesLbl">{MONTHS[mes - 1] + ' ' + data.slice(0, 4)}</div>
-                <div className={`val ${resultado >= 0 ? "positivo" : "negativo"}`} id="kMes">{formatCurrency(resultado)}</div>
-                <div className="note" id="kMesDet">{`Entrou ${formatCurrency(entrada)} · Saiu -${formatCurrency(saida)}`}</div>
+                <div className="lbl" id="kMesLbl">
+                    {cards.mesReferencia ? `${MONTHS[cards.mesReferencia - 1]} ${ano}` : `Mês Atual`}
+                </div>
+                <div className={`val ${cards.resultadoMes >= 0 ? "positivo" : "negativo"}`} id="kMes">
+                    {formatCurrency(cards.resultadoMes)}
+                </div>
+                <div className="note" id="kMesDet">
+                    {`Entrou ${formatCurrency(cards.entrouMes)} · Saiu -${formatCurrency(cards.saiuMes)}`}
+                </div>
             </div>
         </div>
 
@@ -137,7 +140,7 @@ export function Overview({ transacoes, ano, onAnoChange }) {
                         <Tooltip
                             cursor={{ fill: '#f5f5f4' }}
                             formatter={(valor, nome) => [
-                                formatCurrency(valor),
+                                nome === 'Saídas' ? `-${formatCurrency(valor)}` : formatCurrency(valor),
                                 nome,
                             ]}
                             contentStyle={{
@@ -184,8 +187,8 @@ export function Overview({ transacoes, ano, onAnoChange }) {
         </div>
 
         <div className="grid g2" style={{ marginTop: '14px' }}>
-            <Ranking titulo="Maiores despesas do ano" transacoes={topSaida} />
-            <Ranking titulo="Maiores receitas do ano" transacoes={topEntrada} positive />
+            <Ranking titulo="Maiores despesas do ano" transacoes={maioresDespesas} />
+            <Ranking titulo="Maiores receitas do ano" transacoes={maioresReceitas} positivo />
         </div>
     </section>;
 }
